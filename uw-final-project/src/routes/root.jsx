@@ -1,9 +1,22 @@
 import { useState } from 'react';
-import { Outlet, Link, useNavigate } from 'react-router-dom';
+import { Outlet, Link } from 'react-router-dom';
+import CHIMERAS_BANE from '../data/chimeras-bane-players.json';
+
 const Root = () => {
-    const [spellData, setSpellData] = useState(null);
-    const [errorMessage, setErrorMessage] = useState('');
-    const navigate = useNavigate();
+    const [dmScreenData, setDmScreenData] = useState({
+        combatants: CHIMERAS_BANE,
+        spell: {
+            name: '',
+            data: '',
+        },
+        monster: {
+            name: '',
+            data: '',
+        }
+    })
+
+    // console.log("dmScreenData", dmScreenData)
+
     return (
         <>
             <div id="sidebar">
@@ -23,7 +36,7 @@ const Root = () => {
                 </nav>
             </div>
             <div id="detail">
-                <Outlet />
+                <Outlet context={[dmScreenData, setDmScreenData]} />
             </div>
         </>
     )

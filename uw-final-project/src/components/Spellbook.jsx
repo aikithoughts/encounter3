@@ -1,27 +1,28 @@
 import { useEffect, useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
 
 const SpellBook = () => {
-    const [spellName, setSpellName] = useState('');
-    const [searchResult, setSearchResult] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
-
-    const handleSearch = (e) => {
-        e.preventDefault();
-        setSpellName(e.target.elements.spellName.value);
-    };
+    const [dmScreenData, setDmScreenData] = useOutletContext();
+    const [spellNameInput, setSpellNameInput] = useState('');
 
     useEffect(() => {
         const fetchSpell = async () => {
             try {
-                if (spellName) {
-                    const response = await fetch(`https://www.dnd5eapi.co/api/spells/${spellName}`);
-                    if (response.ok) {
-                        const data = await response.json();
-                        setSearchResult(data);
-                    } else {
-                        console.error('Error fetching spell: ', response.statusText);
-                        setErrorMessage('Spell not found.');
-                    }
+                const response = await fetch(`https://www.dnd5eapi.co/api/spells/${spellNameInput}`);
+                if (response.ok) {
+                    const spellData = await response.json();
+                    setDmScreenData(prevData => ({
+                        ...prevData,
+                        spell: {
+                            name: spellNameInput,
+                            data: spellData
+                        }
+                    }));
+                    setErrorMessage('');
+                } else {
+                    console.error('Error fetching spell: ', response.statusText);
+                    setErrorMessage('Spell not found.');
                 }
             } catch (error) {
                 console.error('Error fetching spell: ', error);
@@ -29,12 +30,19 @@ const SpellBook = () => {
             }
         };
 
-        fetchSpell();
+        if (spellNameInput) {
+            fetchSpell();
+        }
+    }, [spellNameInput, setDmScreenData]);
 
-        return () => {
-            // Cleanup if necessary
-        };
-    }, [spellName]);
+    const handleInputChange = (e) => {
+        setSpellNameInput(e.target.value);
+    };
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        // No need to fetch directly here; useEffect will handle it based on spellNameInput
+    };
 
     return (
         <>
@@ -42,20 +50,24 @@ const SpellBook = () => {
             <form onSubmit={handleSearch}>
                 <input
                     type="text"
-                    placeholder="Enter spell name..."
+                    placeholder={dmScreenData.spell.name !== '' ? dmScreenData.spell.name : "Enter spell name..."}
                     name="spellName"
+                    value={spellNameInput}
+                    onChange={handleInputChange}
                 />
                 <button type="submit">Search</button>
             </form>
             {errorMessage ? (
                 <div>{errorMessage}</div>
             ) : (
-                searchResult && (
+                dmScreenData.spell.data ? (
                     <div>
                         {/* Display the search result */}
                         {/* Example: */}
-                        <pre>{JSON.stringify(searchResult, null, 2)}</pre>
+                        <pre>{JSON.stringify(dmScreenData.spell.data, null, 2)}</pre>
                     </div>
+                ) : (
+                    <div>Spell info goes here.</div>
                 )
             )}
         </>

@@ -1,27 +1,28 @@
 import { useEffect, useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
 
 const MonsterManual = () => {
-    const [monster, setMonster] = useState('');
-    const [searchResult, setSearchResult] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
-
-    const handleSearch = (e) => {
-        e.preventDefault();
-        setMonster(e.target.elements.monsterName.value);
-    };
+    const [dmScreenData, setDmScreenData] = useOutletContext();
+    const [monsterNameInput, setMonsterNameInput] = useState('');
 
     useEffect(() => {
         const fetchMonster = async () => {
             try {
-                if (monster) {
-                    const response = await fetch(`https://www.dnd5eapi.co/api/monsters/${monster}`);
-                    if (response.ok) {
-                        const data = await response.json();
-                        setSearchResult(data);
-                    } else {
-                        console.error('Error fetching monster: ', response.statusText);
-                        setErrorMessage('Monster not found.');
-                    }
+                const response = await fetch(`https://www.dnd5eapi.co/api/monsters/${monsterNameInput}`);
+                if (response.ok) {
+                    const monsterData = await response.json();
+                    setDmScreenData(prevData => ({
+                        ...prevData,
+                        monster: {
+                            name: monsterNameInput,
+                            data: monsterData
+                        }
+                    }));
+                    setErrorMessage('');
+                } else {
+                    console.error('Error fetching monster: ', response.statusText);
+                    setErrorMessage('Monster not found.');
                 }
             } catch (error) {
                 console.error('Error fetching monster: ', error);
@@ -29,12 +30,19 @@ const MonsterManual = () => {
             }
         };
 
-        fetchMonster();
+        if (monsterNameInput) {
+            fetchMonster();
+        }
+    }, [monsterNameInput, setDmScreenData]);
 
-        return () => {
-            // Cleanup if necessary
-        };
-    }, [monster]);
+    const handleInputChange = (e) => {
+        setMonsterNameInput(e.target.value);
+    };
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        // No need to fetch directly here; useEffect will handle it based on spellNameInput
+    };
 
     return (
         <>
@@ -42,20 +50,24 @@ const MonsterManual = () => {
             <form onSubmit={handleSearch}>
                 <input
                     type="text"
-                    placeholder="Enter monster name..."
+                    placeholder={dmScreenData.monster.name !== '' ? dmScreenData.monster.name : "Enter monster name..."}
                     name="monsterName"
+                    value={monsterNameInput}
+                    onChange={handleInputChange}
                 />
                 <button type="submit">Search</button>
             </form>
             {errorMessage ? (
                 <div>{errorMessage}</div>
             ) : (
-                searchResult && (
+                dmScreenData.monster.data ? (
                     <div>
                         {/* Display the search result */}
                         {/* Example: */}
-                        <pre>{JSON.stringify(searchResult, null, 2)}</pre>
+                        <pre>{JSON.stringify(dmScreenData.monster.data, null, 2)}</pre>
                     </div>
+                ) : (
+                    <div>Spell info goes here.</div>
                 )
             )}
         </>
