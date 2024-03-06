@@ -8,6 +8,7 @@ import Root from './routes/root';
 import ErrorPage from './error-page';
 import EncounterTracker from './routes/encountertracker';
 import SpellBook from './components/Spellbook';
+import MonsterManual from './components/Monstermanual';
 import './index.css';
 
 const router = createBrowserRouter([
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: 'spellbook',
         element: <SpellBook/>
+      },
+      {
+        path: 'monstermanual',
+        element: <MonsterManual />
       },
     ],
   },
