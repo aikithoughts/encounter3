@@ -64,7 +64,14 @@ const SpellBook = () => {
                     <div>
                         {/* Display the search result */}
                         {/* Example: */}
-                        <pre>{JSON.stringify(dmScreenData.spell.data, null, 2)}</pre>
+                        <h2>{dmScreenData.spell.data.name}</h2>
+                        <p>{dmScreenData.spell.data.desc}</p>
+                        <p>
+                          <b>Casting time:</b> {dmScreenData.spell.data.casting_time}{" "}
+                          <b>Duration:</b> {dmScreenData.spell.data.duration}{" "}
+                          <b>Range:</b> {dmScreenData.spell.data.range}
+                        </p>
+                        {/* <pre>{JSON.stringify(dmScreenData.spell.data, null, 2)}</pre> */}
                     </div>
                 ) : (
                     <div>Spell info goes here.</div>

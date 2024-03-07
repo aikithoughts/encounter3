@@ -70,6 +70,7 @@ const Encounter = () => {
 
   return (
     <div className="encounter-container">
+    <h2>Encounter </h2>
       <div className="combatant-container">
         {sortedCombatants.map((combatant) => (
           <Combatant key={combatant.id} combatant={combatant} handleEditCombatant={handleEditCombatant} handleDeleteCombatant={handleDeleteCombatant}/>

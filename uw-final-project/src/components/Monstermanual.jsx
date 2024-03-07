@@ -44,8 +44,28 @@ const MonsterManual = () => {
         // No need to fetch directly here; useEffect will handle it based on spellNameInput
     };
 
+    const getSpecialAbilities = (specialAbilities) => {
+        return (
+            <ul>
+                {specialAbilities.map((ability, index) => (
+                    <li key={index}>{ability.name}: {ability.desc}</li>
+                ))}
+            </ul>
+        );
+    };
+
+    const getActions = (actions) => {
+        return (
+            <ul>
+                {actions.map((action, index) => (
+                    <li key={index}>{action.name}: {action.desc}</li>
+                ))}
+            </ul>
+        );
+    };
+
     return (
-        <>
+        <div className="monster-container">
             <h2>Monster manual</h2>
             <form onSubmit={handleSearch}>
                 <input
@@ -62,16 +82,23 @@ const MonsterManual = () => {
             ) : (
                 dmScreenData.monster.data ? (
                     <div>
-                        {/* Display the search result */}
-                        {/* Example: */}
-                        <pre>{JSON.stringify(dmScreenData.monster.data, null, 2)}</pre>
+                        <h2>{dmScreenData.monster.data.name}</h2>
+                        <p>
+                          <b>Armor class: </b>{dmScreenData.monster.data.armor_class[0].value}{" "}
+                          <b>Hit points: </b>{dmScreenData.monster.data.hit_points}
+                        </p>
+                        <h3>Special abilities</h3>
+                        {getSpecialAbilities(dmScreenData.monster.data.special_abilities)}
+                        <h3>Actions</h3>
+                        {getActions(dmScreenData.monster.data.actions)}
+                        {/* <pre>{JSON.stringify(dmScreenData.monster.data, null, 2)}</pre> */}
                     </div>
                 ) : (
-                    <div>Spell info goes here.</div>
+                    <div>Monster info goes here.</div>
                 )
             )}
-        </>
-    )
-}
+        </div>
+    );
+};
 
 export default MonsterManual;

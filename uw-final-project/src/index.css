@@ -97,7 +97,6 @@ body {
   color: #121212;
 }
 textarea,
-input,
 button {
   font-size: 1rem;
   font-family: inherit;
@@ -109,6 +108,19 @@ button {
   line-height: 1.5;
   margin: 0;
 }
+
+input {
+  font-size: 1rem;
+  font-family: inherit;
+  border: thin solid lightgray;
+  /* border-radius: 8px; */
+  padding: 0.5rem 0.75rem;
+  box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.2), 0 1px 2px hsla(0, 0%, 0%, 0.2);
+  background-color: white;
+  line-height: 1.5;
+  margin: 0;
+}
+
 button {
   color: #3992ff;
   font-weight: 500;
@@ -469,23 +481,23 @@ i {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border-radius: 10px;
+  /* border-radius: 10px; */
 
 }
 
 .combatant-info {
-  background-color: pink;
-  border-radius: 10px;
+  border: thin solid forestgreen;
+  /* border-radius: 10px; */
   margin: 2px;
 }
 
 form {
   display: flex;
   flex-direction: row;
-  background-color: pink;
-  border-radius: 10px;
+  /* background-color: pink; */
+  /* border-radius: 10px; */
   margin: 2px;
-  background-color: lightblue;
+  /* background-color: lightblue; */
   padding: 5px;
 }
 
@@ -493,3 +505,10 @@ label {
   padding: 5px;
 }
 
+.monster-container {
+  text-align: left;
+}
+
+.read-only {
+  background-color: lightgray;
+}
