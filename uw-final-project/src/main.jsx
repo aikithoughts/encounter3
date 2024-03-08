@@ -7,6 +7,7 @@ import {
 import Root from './routes/root';
 import ErrorPage from './error-page';
 // import EncounterTracker from './routes/encountertracker';
+import Home from './routes/home';
 import Encounter from './components/Encounter';
 import SpellBook from './components/Spellbook';
 import MonsterManual from './components/Monstermanual';
@@ -18,6 +19,9 @@ const router = createBrowserRouter([
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
+      { path: '/',
+        element: <Home/>
+      },
       {
         path: 'encountertracker',
         element: <Encounter/>

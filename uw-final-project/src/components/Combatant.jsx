@@ -24,7 +24,6 @@ const Combatant = ({ combatant, handleEditCombatant, handleDeleteCombatant }) =>
   };
 
   const handleUpdateClick = () => {
-    // Create an editedCombatant object with the updated values
     const editedCombatant = {
       ...combatant,
       name: name,
@@ -32,23 +31,17 @@ const Combatant = ({ combatant, handleEditCombatant, handleDeleteCombatant }) =>
       hitpoints: hitPoints
     };
 
-    // Call the parent component's edit function
     handleEditCombatant(editedCombatant);
     setIsReadOnly(!isReadOnly);
   };
 
   const handleEditClick = () => {
-    // Set the row fields to editable by removing read-only class
-    // setNameReadOnly(!nameReadOnly);
-    // setInitReadOnly(!initReadOnly);
-    // setHitPointsReadOnly(!hitPointsReadOnly);
     setIsReadOnly(!isReadOnly);
   };
 
 
   const handleDeleteClick = () => {
     const id = combatant.id;
-    // Invoke the parent component's delete function
     handleDeleteCombatant(id);
   };
 
@@ -59,7 +52,7 @@ const Combatant = ({ combatant, handleEditCombatant, handleDeleteCombatant }) =>
       </label>
       <input
         id="character-name"
-        type="text"
+        type="number"
         value={name}
         onChange={handleNameChange}
         readOnly={isReadOnly}
@@ -81,7 +74,7 @@ const Combatant = ({ combatant, handleEditCombatant, handleDeleteCombatant }) =>
       </label>
       <input
         id="character-hp"
-        type="number"
+        type="text"
         value={hitPoints}
         onChange={handleHitPointsChange}
         readOnly={isReadOnly}
