@@ -509,6 +509,10 @@ label {
   text-align: left;
 }
 
+.spellbook-container {
+  text-align: left;
+}
+
 .read-only {
   background-color: lightgray;
 }

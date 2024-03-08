@@ -21,11 +21,9 @@ const SpellBook = () => {
                     }));
                     setErrorMessage('');
                 } else {
-                    console.error('Error fetching spell: ', response.statusText);
                     setErrorMessage('Spell not found.');
                 }
             } catch (error) {
-                console.error('Error fetching spell: ', error);
                 setErrorMessage('Spell not found.');
             }
         };
@@ -39,24 +37,16 @@ const SpellBook = () => {
         setSpellNameInput(e.target.value);
     };
 
-    const handleSearch = (e) => {
-        e.preventDefault();
-        // No need to fetch directly here; useEffect will handle it based on spellNameInput
-    };
-
     return (
-        <>
+        <div className="spellbook-container">
             <h2>Spell book</h2>
-            <form onSubmit={handleSearch}>
-                <input
-                    type="text"
-                    placeholder={dmScreenData.spell.name !== '' ? dmScreenData.spell.name : "Enter spell name..."}
-                    name="spellName"
-                    value={spellNameInput}
-                    onChange={handleInputChange}
-                />
-                <button type="submit">Search</button>
-            </form>
+            <input
+                type="text"
+                placeholder={dmScreenData.spell.name !== '' ? dmScreenData.spell.name : "Enter spell name..."}
+                name="spellName"
+                value={spellNameInput}
+                onChange={handleInputChange}
+            />
             {errorMessage ? (
                 <div>{errorMessage}</div>
             ) : (
@@ -67,9 +57,9 @@ const SpellBook = () => {
                         <h2>{dmScreenData.spell.data.name}</h2>
                         <p>{dmScreenData.spell.data.desc}</p>
                         <p>
-                          <b>Casting time:</b> {dmScreenData.spell.data.casting_time}{" "}
-                          <b>Duration:</b> {dmScreenData.spell.data.duration}{" "}
-                          <b>Range:</b> {dmScreenData.spell.data.range}
+                            <b>Casting time:</b> {dmScreenData.spell.data.casting_time}{" "}
+                            <b>Duration:</b> {dmScreenData.spell.data.duration}{" "}
+                            <b>Range:</b> {dmScreenData.spell.data.range}
                         </p>
                         {/* <pre>{JSON.stringify(dmScreenData.spell.data, null, 2)}</pre> */}
                     </div>
@@ -77,7 +67,7 @@ const SpellBook = () => {
                     <div>Spell info goes here.</div>
                 )
             )}
-        </>
+        </div>
     )
 }
 

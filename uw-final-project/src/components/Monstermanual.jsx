@@ -21,11 +21,9 @@ const MonsterManual = () => {
                     }));
                     setErrorMessage('');
                 } else {
-                    console.error('Error fetching monster: ', response.statusText);
                     setErrorMessage('Monster not found.');
                 }
             } catch (error) {
-                console.error('Error fetching monster: ', error);
                 setErrorMessage('Monster not found.');
             }
         };
@@ -37,11 +35,6 @@ const MonsterManual = () => {
 
     const handleInputChange = (e) => {
         setMonsterNameInput(e.target.value);
-    };
-
-    const handleSearch = (e) => {
-        e.preventDefault();
-        // No need to fetch directly here; useEffect will handle it based on spellNameInput
     };
 
     const getSpecialAbilities = (specialAbilities) => {
@@ -67,16 +60,13 @@ const MonsterManual = () => {
     return (
         <div className="monster-container">
             <h2>Monster manual</h2>
-            <form onSubmit={handleSearch}>
-                <input
-                    type="text"
-                    placeholder={dmScreenData.monster.name !== '' ? dmScreenData.monster.name : "Enter monster name..."}
-                    name="monsterName"
-                    value={monsterNameInput}
-                    onChange={handleInputChange}
-                />
-                <button type="submit">Search</button>
-            </form>
+            <input
+                type="text"
+                placeholder={dmScreenData.monster.name !== '' ? dmScreenData.monster.name : "Enter monster name..."}
+                name="monsterName"
+                value={monsterNameInput}
+                onChange={handleInputChange}
+            />
             {errorMessage ? (
                 <div>{errorMessage}</div>
             ) : (
@@ -84,8 +74,8 @@ const MonsterManual = () => {
                     <div>
                         <h2>{dmScreenData.monster.data.name}</h2>
                         <p>
-                          <b>Armor class: </b>{dmScreenData.monster.data.armor_class[0].value}{" "}
-                          <b>Hit points: </b>{dmScreenData.monster.data.hit_points}
+                            <b>Armor class: </b>{dmScreenData.monster.data.armor_class[0].value}{" "}
+                            <b>Hit points: </b>{dmScreenData.monster.data.hit_points}
                         </p>
                         <h3>Special abilities</h3>
                         {getSpecialAbilities(dmScreenData.monster.data.special_abilities)}

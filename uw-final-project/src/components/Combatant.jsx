@@ -5,9 +5,10 @@ const Combatant = ({ combatant, handleEditCombatant, handleDeleteCombatant }) =>
   const [name, setName] = useState(combatant.name);
   const [init, setInit] = useState(combatant.init);
   const [hitPoints, setHitPoints] = useState(combatant.hitpoints);
-  const [nameReadOnly, setNameReadOnly] = useState(true);
-  const [initReadOnly, setInitReadOnly] = useState(true);
-  const [hitPointsReadOnly, setHitPointsReadOnly] = useState(true);
+  // const [nameReadOnly, setNameReadOnly] = useState(true);
+  // const [initReadOnly, setInitReadOnly] = useState(true);
+  // const [hitPointsReadOnly, setHitPointsReadOnly] = useState(true);
+  const [isReadOnly, setIsReadOnly] = useState(true);
 
 
   const handleNameChange = (event) => {
@@ -33,15 +34,17 @@ const Combatant = ({ combatant, handleEditCombatant, handleDeleteCombatant }) =>
 
     // Call the parent component's edit function
     handleEditCombatant(editedCombatant);
+    setIsReadOnly(!isReadOnly);
   };
 
-  const handleEditClick = () => { 
+  const handleEditClick = () => {
     // Set the row fields to editable by removing read-only class
-    setNameReadOnly(!nameReadOnly);
-    setInitReadOnly(!initReadOnly);
-    setHitPointsReadOnly(!hitPointsReadOnly);
+    // setNameReadOnly(!nameReadOnly);
+    // setInitReadOnly(!initReadOnly);
+    // setHitPointsReadOnly(!hitPointsReadOnly);
+    setIsReadOnly(!isReadOnly);
   };
-  
+
 
   const handleDeleteClick = () => {
     const id = combatant.id;
@@ -59,8 +62,8 @@ const Combatant = ({ combatant, handleEditCombatant, handleDeleteCombatant }) =>
         type="text"
         value={name}
         onChange={handleNameChange}
-        readOnly={nameReadOnly}
-        className={nameReadOnly ? "read-only" : "editable"}
+        readOnly={isReadOnly}
+        className={isReadOnly ? "read-only" : "editable"}
       />
       <label id="character-init-label" htmlFor="character-init">
         Init
@@ -68,10 +71,10 @@ const Combatant = ({ combatant, handleEditCombatant, handleDeleteCombatant }) =>
       <input
         id="character-init"
         type="number"
-        value={init}
+        value={init === 0 ? '' : init}
         onChange={handleInitChange}
-        readOnly={nameReadOnly}
-        className={nameReadOnly ? "read-only" : "editable"}
+        readOnly={isReadOnly}
+        className={isReadOnly ? "read-only" : "editable"}
       />
       <label id="character-hp-label" htmlFor="character-hp">
         HP
@@ -81,15 +84,18 @@ const Combatant = ({ combatant, handleEditCombatant, handleDeleteCombatant }) =>
         type="number"
         value={hitPoints}
         onChange={handleHitPointsChange}
-        readOnly={nameReadOnly}
-        className={nameReadOnly ? "read-only" : "editable"}
+        readOnly={isReadOnly}
+        className={isReadOnly ? "read-only" : "editable"}
       />
-      <button type="button" onClick={handleEditClick}>
-        <i className="fa-solid fa-pen-to-square"></i>
-      </button>
-      <button type="button" onClick={handleUpdateClick}>
-        <i className="fa-solid fa-upload"></i>
-      </button>
+      {isReadOnly ? (
+        <button type="button" onClick={handleEditClick}>
+          <i className="fa-solid fa-pen-to-square"></i>
+        </button>
+      ) : (
+        <button type="button" onClick={handleUpdateClick}>
+          <i className="fa-solid fa-upload"></i>
+        </button>
+      )}
       <button type="button" onClick={handleDeleteClick}>
         <i className="fa-solid fa-trash"></i>
       </button>
