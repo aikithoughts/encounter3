@@ -52,7 +52,7 @@ const Combatant = ({ combatant, handleEditCombatant, handleDeleteCombatant }) =>
       </label>
       <input
         id="character-name"
-        type="number"
+        type="text"
         value={name}
         onChange={handleNameChange}
         readOnly={isReadOnly}
