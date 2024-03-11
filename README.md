@@ -21,9 +21,9 @@ This application employes the React Router to provide three different resources:
   1.  To add a new combatant, add their name, initiative, and hitpoints in the bottom row, then click the **Plus** button in the bottom row of the table.
   1.  To delete a combatant, click the **Delete** button.
 
-* **Spell book**. Use this feature to look up information about any given spell. This information is fetched from [www.dndapi.co.](https://www.dnd5eapi.co/).
+* **Spell book**. Use this feature to look up information about any given spell. This information is fetched from [www.dndapi.co.](https://www.dnd5eapi.co/). Note: If a spell is more than one word, you must separate each word with `-`.
 
-* **Monster manual**. Like the Spell book, use this feature to look up information about any given monster. Again, this information is fetched from  [www.dndapi.co.](https://www.dnd5eapi.co/).
+* **Monster manual**. Like the Spell book, use this feature to look up information about any given monster. Again, this information is fetched from  [www.dndapi.co.](https://www.dnd5eapi.co/). Note: If a monster's name is more than one word, you must separate each word with `-`.
 
 ## Testing
 
