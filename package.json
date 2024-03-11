@@ -2,6 +2,9 @@
   "name": "final-project",
   "private": true,
   "version": "0.0.0",
+  "babel": {
+    "presets": ["@babel/preset-env", "@babel/preset-react"]
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -25,6 +28,14 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
-    "vite": "^5.1.4"
+    "vite": "^5.1.4",
+    "@babel/preset-env": "^7.18.0",
+    "@babel/preset-react": "^7.18.0"
+  },
+  "jest": {
+      "testEnvironment": "jsdom",
+      "transform": {
+        "^.+\\.jsx?$": "babel-jest"
+      }
   }
 }

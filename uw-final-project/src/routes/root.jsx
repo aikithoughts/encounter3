@@ -38,7 +38,7 @@ const Root = () => {
   return (
     <>
       <div id="sidebar">
-        <h1>React Router Contacts</h1>
+        <h1>Dave's DM Screen</h1>
         <nav>
           <ul>
             <NavItem to="/">Home</NavItem>
