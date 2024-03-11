@@ -23,17 +23,27 @@ const Combatant = ({ combatant, handleEditCombatant, handleDeleteCombatant }) =>
     setHitPoints(Number(event.target.value));
   };
 
-  const handleUpdateClick = () => {
-    const editedCombatant = {
-      ...combatant,
-      name: name,
-      init: init,
-      hitpoints: hitPoints
-    };
 
+
+  // Function to handle the click event
+  const handleUpdateClick = () => {
+    const editedCombatant = updateCombatant(combatant, name, init, hitPoints);
     handleEditCombatant(editedCombatant);
     setIsReadOnly(!isReadOnly);
   };
+
+
+  // const handleUpdateClick = () => {
+  //   const editedCombatant = {
+  //     ...combatant,
+  //     name: name,
+  //     init: init,
+  //     hitpoints: hitPoints
+  //   };
+
+  //   handleEditCombatant(editedCombatant);
+  //   setIsReadOnly(!isReadOnly);
+  // };
 
   const handleEditClick = () => {
     setIsReadOnly(!isReadOnly);
@@ -105,6 +115,16 @@ Combatant.propTypes = {
   }).isRequired,
   handleEditCombatant: PropTypes.func.isRequired,
   handleDeleteCombatant: PropTypes.func.isRequired
+};
+
+// Function to update the combatant object
+export const updateCombatant = (combatantToUpdate, newName, newInit, newHitPoints) => {
+  return {
+    ...combatantToUpdate,
+    name: newName,
+    init: newInit,
+    hitpoints: newHitPoints
+  };
 };
 
 export default Combatant;
