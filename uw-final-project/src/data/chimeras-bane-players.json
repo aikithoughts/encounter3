@@ -1,0 +1,37 @@
+[
+    {
+        "id": 0,
+        "name": "Monde",
+        "type": "Player",
+        "hitpoints": 33,
+        "init": 0
+    },
+    {
+        "id": 1,
+        "name": "Bilwin",
+        "type": "Player",
+        "hitpoints": 43,
+        "init": 0
+    },
+    {
+        "id": 2,
+        "name": "Grindlefoot",
+        "type": "Player",
+        "hitpoints": 28,
+        "init": 0
+    },
+    {
+        "id": 3,
+        "name": "Dolor",
+        "type": "Player",
+        "hitpoints": 37,
+        "init": 0
+    },
+    {
+        "id": 4,
+        "name": "Gven",
+        "type": "Player",
+        "hitpoints": 55,
+        "init": 0
+    }
+]
