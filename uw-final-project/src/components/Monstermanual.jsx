@@ -81,7 +81,6 @@ const MonsterManual = () => {
                         {getSpecialAbilities(dmScreenData.monster.data.special_abilities)}
                         <h3>Actions</h3>
                         {getActions(dmScreenData.monster.data.actions)}
-                        {/* <pre>{JSON.stringify(dmScreenData.monster.data, null, 2)}</pre> */}
                     </div>
                 ) : (
                     <div>Monster info goes here.</div>

@@ -5,9 +5,6 @@ const Combatant = ({ combatant, handleEditCombatant, handleDeleteCombatant }) =>
   const [name, setName] = useState(combatant.name);
   const [init, setInit] = useState(combatant.init);
   const [hitPoints, setHitPoints] = useState(combatant.hitpoints);
-  // const [nameReadOnly, setNameReadOnly] = useState(true);
-  // const [initReadOnly, setInitReadOnly] = useState(true);
-  // const [hitPointsReadOnly, setHitPointsReadOnly] = useState(true);
   const [isReadOnly, setIsReadOnly] = useState(true);
 
 
@@ -31,19 +28,6 @@ const Combatant = ({ combatant, handleEditCombatant, handleDeleteCombatant }) =>
     handleEditCombatant(editedCombatant);
     setIsReadOnly(!isReadOnly);
   };
-
-
-  // const handleUpdateClick = () => {
-  //   const editedCombatant = {
-  //     ...combatant,
-  //     name: name,
-  //     init: init,
-  //     hitpoints: hitPoints
-  //   };
-
-  //   handleEditCombatant(editedCombatant);
-  //   setIsReadOnly(!isReadOnly);
-  // };
 
   const handleEditClick = () => {
     setIsReadOnly(!isReadOnly);

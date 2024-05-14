@@ -1,15 +1,11 @@
-// import { useState } from 'react';
 import Combatant from './Combatant';
 import { useOutletContext } from 'react-router-dom';
-// import CHIMERAS_BANE from '../data/chimeras-bane-players.json';
 
 const Encounter = () => {
 
   const [dmScreenData, setDmScreenData] = useOutletContext();
 
   const combatants = dmScreenData.combatants;
-  // console.log('dmScreenData', dmScreenData)
-  // const [combatants, setCombatants] = useState(CHIMERAS_BANE);
 
   const sortedCombatants = combatants.slice().sort((a, b) => b.init - a.init);
 
@@ -20,7 +16,6 @@ const Encounter = () => {
 
     const sortedCombatants = updatedCombatants.slice().sort((a, b) => b.init - a.init);
 
-    // setCombatants(sortedCombatants);
     setDmScreenData(dmScreenData => ({
       ...dmScreenData,
       combatants: sortedCombatants

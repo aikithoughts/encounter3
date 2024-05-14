@@ -61,7 +61,6 @@ const SpellBook = () => {
                             <b>Duration:</b> {dmScreenData.spell.data.duration}{" "}
                             <b>Range:</b> {dmScreenData.spell.data.range}
                         </p>
-                        {/* <pre>{JSON.stringify(dmScreenData.spell.data, null, 2)}</pre> */}
                     </div>
                 ) : (
                     <div>Spell info goes here.</div>

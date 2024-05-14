@@ -6,7 +6,6 @@ import {
 } from 'react-router-dom';
 import Root from './routes/root';
 import ErrorPage from './error-page';
-// import EncounterTracker from './routes/encountertracker';
 import Home from './routes/home';
 import Encounter from './components/Encounter';
 import SpellBook from './components/Spellbook';
